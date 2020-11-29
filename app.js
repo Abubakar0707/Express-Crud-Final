@@ -7,16 +7,12 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
-var session = require("express-session");
+var session = require('express-session')
 var sessionauth = require("./middlewares/sessionauth");
-var app = express();
 const { Mongoose } = require('mongoose');
 const connectDB = require('./DB/connection'); 
-
-connectDB();
-
-// view engine setup
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+var app = express();
+app.use(session({ secret: "keyboard cat", cookie: { maxAge: 60000 }}));
 app.use(
   session({
   secret: "dummytext",
@@ -25,6 +21,12 @@ app.use(
   cookie: { secure: true },
   })
 );
+
+connectDB();
+
+// view engine setup
+
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 app.use(sessionauth);
