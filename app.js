@@ -19,11 +19,11 @@ connectDB();
 app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 app.use(
   session({
-  secret: 'dummytext',
+  secret: "dummytext",
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
-})
+  cookie: { secure: true },
+  })
 );
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
